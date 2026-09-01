@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analysis of Household Surveys</title>
+<meta name="description" content="A five-session workshop on the analysis of household survey data. Department of Economics, University of Ghana.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper:#F1F3F1; --surface:#FFFFFF; --surface-2:#E9EDEA;
+    --ink:#14202B; --ink-soft:#55646F; --ink-faint:#7E8C93;
+    --accent:#0F5F5C; --accent-bg:#E2EDEB;
+    --ochre:#8A5F10; --ochre-bg:#F4EBD8;
+    --rule:#D5DBD7; --code-bg:#16232B; --code-ink:#DCE6E4;
+    --measure:70ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0F1417; --surface:#161D21; --surface-2:#1D262A;
+      --ink:#E3E9E6; --ink-soft:#A3B0AE; --ink-faint:#7C8A89;
+      --accent:#5FBDB6; --accent-bg:#16302F;
+      --ochre:#D2A24C; --ochre-bg:#2E2617;
+      --rule:#28333A; --code-bg:#0A1013; --code-ink:#D3DEDC;
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:16px; line-height:1.62; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--measure);margin:0 auto;
+        padding:clamp(1.75rem,5vw,4rem) clamp(1.1rem,4vw,2rem) 6rem;
+        display:flex;flex-direction:column;gap:2.75rem}
+  .eyebrow{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;
+           color:var(--accent);font-weight:600;display:flex;flex-wrap:wrap;
+           gap:.5rem;align-items:baseline;margin-bottom:1rem}
+  .eyebrow .sep{color:var(--ink-faint)}
+  h1{font-family:Spectral,Georgia,serif;font-size:clamp(2.1rem,6vw,2.9rem);
+     line-height:1.08;font-weight:600;margin:0 0 1rem;letter-spacing:-.015em;
+     text-wrap:balance}
+  hr.thick{height:3px;background:var(--ink);border:0;margin:0 0 1rem}
+  .standfirst{font-family:Spectral,Georgia,serif;font-size:1.18rem;
+              line-height:1.55;color:var(--ink-soft);margin:0;max-width:58ch}
+  h2{font-family:Spectral,Georgia,serif;font-size:1.5rem;font-weight:600;
+     line-height:1.2;margin:0 0 1rem;text-wrap:balance}
+  p{margin:0 0 .85rem;max-width:64ch}
+  p:last-child{margin-bottom:0}
+  a{color:var(--accent);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+  section{display:block}
+  .cta{display:flex;flex-wrap:wrap;gap:.75rem;margin:.25rem 0 0}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.95rem;
+       padding:.7rem 1.15rem;border-radius:4px;background:var(--accent);
+       color:var(--paper);border:1px solid var(--accent)}
+  .btn.alt{background:transparent;color:var(--accent)}
+  .btn:hover{opacity:.9}
+  .note{padding:1.15rem 1.3rem;border-radius:3px;background:var(--ochre-bg);
+        border-left:3px solid var(--ochre)}
+  .note .label{font-size:.78rem;text-transform:uppercase;letter-spacing:.11em;
+               font-weight:600;color:var(--ochre);display:block;margin-bottom:.5rem}
+  ol.sessions{list-style:none;padding:0;margin:0;counter-reset:s;
+              display:flex;flex-direction:column;gap:1.6rem}
+  ol.sessions li{display:grid;grid-template-columns:2.1rem 1fr;gap:.3rem .95rem}
+  ol.sessions li::before{counter-increment:s;content:counter(s);
+    font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:500;
+    color:var(--accent);background:var(--accent-bg);border-radius:50%;
+    width:2.1rem;height:2.1rem;display:grid;place-items:center;
+    font-variant-numeric:tabular-nums}
+  ol.sessions h3{grid-column:2;margin:0;font-size:1rem;font-weight:600;align-self:center}
+  ol.sessions p{grid-column:2;margin:0;color:var(--ink-soft);font-size:.95rem}
+  ul.refs{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.7rem}
+  ul.refs li{max-width:62ch}
+  code{font-family:"IBM Plex Mono",monospace;font-size:.87em;
+       background:var(--surface-2);padding:.1em .36em;border-radius:3px}
+  footer{border-top:1px solid var(--rule);padding-top:1.25rem;
+         color:var(--ink-faint);font-size:.87rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">
+      <span>Department of Economics</span><span class="sep">/</span><span>University of Ghana</span>
+    </div>
+    <h1>Analysis of Household Surveys</h1>
+    <hr class="thick">
+    <p class="standfirst">
+      A short, hands-on workshop: five two-hour meetings over two weeks,
+      working with real surveys from raw files to a reproducible result.
+    </p>
+  </header>
+
+  <section>
+    <div class="cta">
+      <a class="btn" href="https://hhsurveys.ligonresearch.org">Open the workshop hub</a>
+      <a class="btn alt" href="https://hhsurveys.ligonresearch.org/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fligon%2Fhhsurveys&amp;urlpath=lab%2Ftree%2Fhhsurveys%2Fnotebooks&amp;branch=main">Get the materials</a>
+    </div>
+    <p style="margin-top:1rem;color:var(--ink-faint);font-size:.9rem">
+      The second link pulls the session notebooks into your hub account.
+      Click it again after any update &mdash; your own edits are kept.
+    </p>
+  </section>
+
+  <section>
+    <h2>Why the surveys, not the estimators</h2>
+    <p>
+      Most graduate training inverts the priority. Students learn fixed
+      effects and GMM in some detail, but rarely learn how a survey is
+      designed, where it breaks, and what its structure does and does not
+      let them identify. Yet the design choices &mdash; multistage sampling,
+      rotating and refreshment panels, attrition, the household that splits
+      between rounds &mdash; are exactly what determine whether a clean-looking
+      regression means anything.
+    </p>
+    <p>
+      A careful analyst needs both halves, and the second is the one usually
+      missing. The workshop follows Deaton's progression from design to
+      description to demand to dynamics, working throughout with data from
+      the region.
+    </p>
+  </section>
+
+  <section>
+    <h2>The five sessions</h2>
+    <ol class="sessions">
+      <li>
+        <h3>Design, sampling, and collection</h3>
+        <p>What a careful analyst should know before touching the data. Cross-section, repeated cross-section, and panel, and what each lets us identify; weights, stratification, and clustering; attrition versus comparability across rounds.</p>
+      </li>
+      <li>
+        <h3>Describing welfare</h3>
+        <p>Constructing consumption aggregates, then poverty, inequality, and the shape of the distribution, by region and across rounds. The discipline of describing the data carefully before modelling it.</p>
+      </li>
+      <li>
+        <h3>Demand and welfare</h3>
+        <p>Engel curves, budget shares, equivalence scales, and spatial price deflation, building to a first demand system. This is where household surveys earn their keep for policy.</p>
+      </li>
+      <li>
+        <h3>From cross-sections to dynamics</h3>
+        <p>Pseudo-panels built from repeated cross-sections, then genuine panel methods &mdash; fixed effects, two-way fixed effects, and clustered inference &mdash; on a true multi-wave panel.</p>
+      </li>
+      <li>
+        <h3>Capstone and frontiers</h3>
+        <p>Participants run a small reproducible analysis of a survey of their choosing. We close with where the methods break down: short panels and dynamic models, measurement error, and endogeneity.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Before you arrive</h2>
+    <div class="note">
+      <span class="label">You do not need to install anything</span>
+      <p>
+        The sessions run on the workshop hub, in your browser. You will get
+        a username and set your own password at first login &mdash; it must be
+        at least seven characters. Bring a laptop if you have one.
+      </p>
+    </div>
+    <p style="margin-top:1rem">
+      If you would like the software on your own machine as well &mdash; worth
+      doing, since it is what you will use after the workshop &mdash; the
+      instructions assume no prior Python and take you through it a step at
+      a time. Do it at home on a good connection: it is roughly a 1.3&nbsp;GB
+      download, and twenty laptops installing at once in the classroom will
+      simply stall.
+    </p>
+    <p>
+      <strong>You do not need a World Bank Microdata account.</strong>
+      Registering is free and worth doing eventually for your own research,
+      but nothing in the five sessions requires it.
+    </p>
+  </section>
+
+  <section>
+    <h2>Reading</h2>
+    <ul class="refs">
+      <li>
+        Angus Deaton, <em>The Analysis of Household Surveys: A Microeconometric
+        Approach to Development Policy</em> (Johns Hopkins, 1997) is the spine.
+        The World Bank's 2018 reissue is open access, so it costs you nothing:
+        <a href="https://documents.worldbank.org/curated/en/203811547671768139/pdf/133790-PUB.pdf">full PDF</a>
+        (<a href="https://documents.worldbank.org/curated/en/203811547671768139/The-Analysis-of-Household-Surveys-A-Microeconometric-Approach-to-Development-Policy">landing page</a>).
+        Chapter 1 is a good place to start.
+      </li>
+      <li>
+        Deaton and Zaidi, <em>Guidelines for Constructing Consumption Aggregates
+        for Welfare Analysis</em> &mdash; the reference for session 2.
+      </li>
+      <li>
+        Deaton (1985), &ldquo;Panel data from time series of cross-sections,&rdquo;
+        <em>Journal of Econometrics</em> &mdash; the origin of the pseudo-panel
+        methods in session 4.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Software and data</h2>
+    <p>
+      The hands-on work uses <a href="https://github.com/ligon/LSMS_Library">LSMS_Library</a>,
+      an open-source Python package giving a uniform interface to the household
+      surveys of roughly forty countries. We use Ghana's GLSS as the running
+      local example and Uganda's National Panel Survey for the panel material.
+    </p>
+    <p>
+      World Bank microdata cannot be freely redistributed, so the sessions work
+      from harmonised extracts prepared in advance and staged on the hub. This
+      repository contains code and text only &mdash; no survey data.
+    </p>
+  </section>
+
+  <footer>
+    Ethan Ligon &middot; University of California, Berkeley &middot;
+    visiting the Department of Economics, University of Ghana.
+    <br>
+    Materials: <a href="https://github.com/ligon/hhsurveys">github.com/ligon/hhsurveys</a>
+  </footer>
+</div>
+</body>
+</html>

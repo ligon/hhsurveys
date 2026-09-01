@@ -1,0 +1,13 @@
+# Never commit survey microdata or anything derived from it.
+# The World Bank terms do not permit redistribution; derived extracts
+# live on the workshop hub at /srv/data/extracts, not here.
+data/
+extracts/
+*.parquet
+*.dta
+*.sav
+*.csv
+
+# Notebook noise
+.ipynb_checkpoints/
+__pycache__/
