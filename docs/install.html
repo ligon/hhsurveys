@@ -567,7 +567,7 @@ conda activate surveys</pre></div>
             With <code class="inline">(surveys)</code> showing at the start of
             your line, paste:
           </p>
-          <div class="code"><pre>pip install LSMS_Library &quot;pandas&lt;3&quot; jupyterlab</pre></div>
+          <div class="code"><pre>pip install LSMS_Library jupyterlab</pre></div>
           <p class="meta">
             This is the big one — about 1.1&nbsp;GB and roughly 180 packages.
             Expect anywhere from a few minutes to the better part of an hour,
@@ -718,18 +718,6 @@ print(roster.shape)</pre></div>
           GnuPG is missing rather than anything to do with your account.
           Check whether the cell still shows <code class="inline">[*]</code>,
           and read the last line of any red traceback.
-        </p>
-      </div>
-
-      <div class="fault">
-        <h3>Pandas is too new</h3>
-        <div class="fault-msg">TypeError: Invalid value '&lt;ArrowStringArray&gt; ... dtype: str' for dtype 'float64'</div>
-        <p>
-          The library does not yet work with pandas 3. This is why step 3
-          asks for <code class="inline">"pandas&lt;3"</code>. If you
-          installed without it, fix it with
-          <code class="inline">pip install "pandas&lt;3"</code> and restart
-          your notebook kernel.
         </p>
       </div>
 
