@@ -604,31 +604,46 @@ print(roster.shape)</pre></div>
           </p>
 
           <div class="note">
-            <span class="note-label">How to tell &ldquo;slow&rdquo; from &ldquo;broken&rdquo;</span>
+            <span class="note-label">If it does not finish</span>
             <p>
-              The two halves of that cell behave differently, and this is the
-              quickest way to tell which you are looking at:
+              The years printing tells you only that the library loaded. What
+              matters is what the cell does <em>next</em>, and there are two
+              quite different possibilities:
             </p>
             <ul class="plain" style="margin-top:0.6rem">
               <li>
-                <strong>The list of years appears within a few seconds.</strong>
-                Your installation is working. The remaining wait is only the
-                data download &mdash; leave it running, even if it takes ten
-                minutes or more. Jupyter shows <code class="inline">[*]</code>
-                beside a cell that is still busy.
+                <strong>The cell is still busy.</strong> Jupyter shows
+                <code class="inline">[*]</code> beside it while it works. It is
+                downloading the survey data &mdash; leave it running, even for
+                ten minutes or more. This happens only on the first run.
               </li>
               <li>
-                <strong>Nothing appears at all, or you get a red
-                <code class="inline">Traceback</code>.</strong> That is a real
-                fault rather than slowness. Run the fuller check at the bottom
-                of this page and send the two <code class="inline">REPORT</code>
-                lines &mdash; they say which piece is missing.
+                <strong>You get a red <code class="inline">Traceback</code>.</strong>
+                Read its <em>last</em> line, which names the real problem:
+                <ul class="plain" style="margin-top:0.45rem">
+                  <li>
+                    <code class="inline">NoCredentialsError: Unable to locate
+                    credentials</code> &mdash; GnuPG is missing. This is the most
+                    common one, especially on Windows. See below; it is a
+                    five-minute fix.
+                  </li>
+                  <li>
+                    <code class="inline">Bad git executable</code> &mdash; git is
+                    missing; the <code class="inline">surveys</code> environment
+                    is probably not active.
+                  </li>
+                  <li>
+                    Anything else &mdash; run the fuller check at the bottom of
+                    this page and send the two
+                    <code class="inline">REPORT</code> lines.
+                  </li>
+                </ul>
               </li>
             </ul>
             <p style="margin-top:0.7rem">
               On the workshop server these lines return almost instantly,
-              because the data is already staged there. A slower result on your
-              own machine is expected, and is not a sign that anything is wrong.
+              because the data and the tools are already in place there. Working
+              on the server is unaffected by any of this.
             </p>
           </div>
 
@@ -693,13 +708,16 @@ print(roster.shape)</pre></div>
 
       <div class="fault" style="border-left-color:var(--ochre)">
         <h3>It works on the server but not on my own machine</h3>
-        <div class="fault-msg" style="color:var(--ochre);background:var(--ochre-bg)">the cell never finishes, or appears to hang</div>
+        <div class="fault-msg" style="color:var(--ochre);background:var(--ochre-bg)">the cell never finishes, or fails only on the last line</div>
         <p>
-          Usually not a fault. The workshop server already holds the survey
-          data; your own machine has to download it the first time, and that is
-          the slow step. If the list of years printed, it is working &mdash; let
-          it run. If nothing printed at all, use the fuller check below and send
-          the <code class="inline">REPORT</code> lines.
+          The server has both the survey data and the tools already in place,
+          so it is not a fair comparison. On your own machine the last line is
+          the one that does real work, and it can fail for two quite different
+          reasons: it may simply still be downloading, or it may have stopped
+          with <code class="inline">NoCredentialsError</code>, which means
+          GnuPG is missing rather than anything to do with your account.
+          Check whether the cell still shows <code class="inline">[*]</code>,
+          and read the last line of any red traceback.
         </p>
       </div>
 
