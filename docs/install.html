@@ -597,11 +597,40 @@ print(ghana.waves)
 roster = ghana.household_roster()
 print(roster.shape)</pre></div>
           <p class="meta">
-            The first run downloads real survey data and is slow — a minute on
-            a fast connection, considerably longer on a slow one. Later runs
-            take a couple of seconds, because the data is then stored on your
-            machine.
+            The first run downloads real survey data — about 34&nbsp;MB. On a
+            fast connection that takes a minute or two; on a slow one it can
+            take considerably longer. Later runs take a couple of seconds,
+            because the data is then stored on your machine.
           </p>
+
+          <div class="note">
+            <span class="note-label">How to tell &ldquo;slow&rdquo; from &ldquo;broken&rdquo;</span>
+            <p>
+              The two halves of that cell behave differently, and this is the
+              quickest way to tell which you are looking at:
+            </p>
+            <ul class="plain" style="margin-top:0.6rem">
+              <li>
+                <strong>The list of years appears within a few seconds.</strong>
+                Your installation is working. The remaining wait is only the
+                data download &mdash; leave it running, even if it takes ten
+                minutes or more. Jupyter shows <code class="inline">[*]</code>
+                beside a cell that is still busy.
+              </li>
+              <li>
+                <strong>Nothing appears at all, or you get a red
+                <code class="inline">Traceback</code>.</strong> That is a real
+                fault rather than slowness. Run the fuller check at the bottom
+                of this page and send the two <code class="inline">REPORT</code>
+                lines &mdash; they say which piece is missing.
+              </li>
+            </ul>
+            <p style="margin-top:0.7rem">
+              On the workshop server these lines return almost instantly,
+              because the data is already staged there. A slower result on your
+              own machine is expected, and is not a sign that anything is wrong.
+            </p>
+          </div>
 
           <h3>What success looks like</h3>
           <div class="output"><pre><span class="ok">['1987-88', '1988-89', '1991-92', '1998-99', '2005-06', '2012-13', '2016-17']
@@ -659,6 +688,18 @@ print(roster.shape)</pre></div>
           It is installed in step 2, so this points to the same cause: the
           <code class="inline">surveys</code> environment is not active.
           Run <code class="inline">conda activate surveys</code> and try again.
+        </p>
+      </div>
+
+      <div class="fault" style="border-left-color:var(--ochre)">
+        <h3>It works on the server but not on my own machine</h3>
+        <div class="fault-msg" style="color:var(--ochre);background:var(--ochre-bg)">the cell never finishes, or appears to hang</div>
+        <p>
+          Usually not a fault. The workshop server already holds the survey
+          data; your own machine has to download it the first time, and that is
+          the slow step. If the list of years printed, it is working &mdash; let
+          it run. If nothing printed at all, use the fuller check below and send
+          the <code class="inline">REPORT</code> lines.
         </p>
       </div>
 
