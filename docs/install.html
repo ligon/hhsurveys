@@ -746,42 +746,55 @@ print(roster.shape)</pre></div>
           inside the <code class="inline">surveys</code> environment.</span>
         </p>
         <p>
-          Installing GnuPG is the fix worth pursuing. <strong>If it truly
-          cannot be made to work, a free World Bank Microdata key is a
-          fallback</strong> &mdash; register, accept the terms for the LSMS
-          collections, and save the key in a file named
-          <code class="inline">config.yml</code> inside a folder called
-          <code class="inline">.config/lsms_library</code> in your home
-          directory, containing one line:
+          Installing GnuPG is the fix for this particular message. A World
+          Bank Microdata key &mdash; which you should get in any case, see below
+          &mdash; will also let the library reach the data, though by a slower
+          route: it downloads from the World Bank directly rather than from
+          the fast shared cache. With both GnuPG and a key you get the fast
+          route <em>and</em> the full library.
         </p>
-        <div class="code"><pre>microdata_api_key: your_key_here</pre></div>
+        <p>
+          <strong>Simplest of all, if you are stuck:</strong> log in to the
+          workshop server and open the folder
+          <code class="inline">for-your-laptop</code> in your home directory.
+          It contains one small file and a README explaining what to do with
+          it &mdash; copying that file onto your own machine restores the fast
+          route without GnuPG.
+        </p>
         <p class="meta">
-          Be aware this is the slower road, not an equivalent one. The key does
-          not replace GnuPG for reaching the fast shared cache; what it does is
-          let the library download from the World Bank directly instead, which
-          takes considerably longer and has more ways to fail. Prefer GnuPG,
-          and if neither works, simply use the workshop server &mdash; it is what
-          the sessions run on. Registration at
-          <a href="https://microdata.worldbank.org/">microdata.worldbank.org</a>
-          is free and worth having regardless, since it gives you the raw
-          survey files for your own research.
+          If none of this works, use the workshop server &mdash; it is what the
+          sessions run on, and nothing there depends on your laptop.
         </p>
       </div>
     </div>
 
     <div class="note relief">
-      <span class="note-label">You do not need a World Bank account</span>
+      <span class="note-label">Please register for a World Bank Microdata key</span>
       <p>
-        Nothing in the five sessions requires one, and everything on the
-        workshop server works without it. You may see the library mention a
-        World Bank Microdata API key; you can ignore that.
+        It is free, takes a few minutes, and we would encourage everyone to do
+        it: <a href="https://microdata.worldbank.org/">microdata.worldbank.org</a>.
+        Register, then accept the terms of use for the LSMS collections.
       </p>
       <p>
-        The one time it helps: if a local installation keeps failing with
-        <code class="inline">NoCredentialsError</code> and GnuPG cannot be
-        made to work, a free key gives the library a slower fallback route to
-        the data. See that entry above. It is worth having eventually for your
-        own research in any case, since it gives you the raw survey files.
+        Two reasons it is worth your while. It opens up the whole of the
+        library rather than the slice staged for this workshop &mdash; roughly
+        forty countries of survey data, which is what makes the tool useful for
+        your own research afterwards. And it puts your access to the data on
+        its proper footing: the surveys belong to national statistical offices
+        and the World Bank, whose terms ask each user to accept them
+        individually. Holding your own key is how you do that.
+      </p>
+      <p>
+        Once you have the key, save it on your own machine in a file named
+        <code class="inline">config.yml</code>, inside a folder called
+        <code class="inline">.config/lsms_library</code> in your home
+        directory, containing one line:
+      </p>
+      <div class="code"><pre>microdata_api_key: your_key_here</pre></div>
+      <p class="meta">
+        None of the five sessions depends on this, and the workshop server
+        works without it &mdash; so if registration is slow, it is not something
+        to worry about before Tuesday.
       </p>
     </div>
   </section>
