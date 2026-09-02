@@ -784,17 +784,109 @@ print(roster.shape)</pre></div>
         and the World Bank, whose terms ask each user to accept them
         individually. Holding your own key is how you do that.
       </p>
-      <p>
-        Once you have the key, save it on your own machine in a file named
-        <code class="inline">config.yml</code>, inside a folder called
-        <code class="inline">.config/lsms_library</code> in your home
-        directory, containing one line:
-      </p>
-      <div class="code"><pre>microdata_api_key: your_key_here</pre></div>
+      <h3 style="margin-top:1rem">Getting the key, step by step</h3>
       <p class="meta">
-        None of the five sessions depends on this, and the workshop server
-        works without it &mdash; so if registration is slow, it is not something
-        to worry about before Tuesday.
+        The World Bank publishes no instructions for this, so follow these
+        closely &mdash; the key is not where you would expect, and it is shown
+        only once.
+      </p>
+      <ol class="steps" style="gap:1.1rem;margin-top:0.8rem">
+        <li class="step">
+          <h3>Register</h3>
+          <div class="step-body">
+            <p>
+              <a href="https://microdata.worldbank.org/auth/register">microdata.worldbank.org/auth/register</a>.
+              Give your name, email, institution and a password.
+            </p>
+          </div>
+        </li>
+        <li class="step">
+          <h3>Activate from the email they send</h3>
+          <div class="step-body">
+            <p>
+              You cannot log in until you click that link. <strong>Check your
+              spam folder</strong> &mdash; this is where most people get stuck.
+            </p>
+          </div>
+        </li>
+        <li class="step">
+          <h3>Log in and open your profile</h3>
+          <div class="step-body">
+            <p>
+              <a href="https://microdata.worldbank.org/auth/login">Log in</a>,
+              then click the person icon with your name at the top right and
+              choose <strong>Profile</strong>. Direct link:
+              <a href="https://microdata.worldbank.org/index.php/auth/profile">microdata.worldbank.org/index.php/auth/profile</a>.
+            </p>
+          </div>
+        </li>
+        <li class="step">
+          <h3>Generate the key</h3>
+          <div class="step-body">
+            <p>
+              Scroll past your details to a section headed
+              <strong>API keys</strong>. It will say &ldquo;No API keys
+              found.&rdquo; Click the blue <strong>Generate API key</strong>
+              button beside that heading.
+            </p>
+          </div>
+        </li>
+        <li class="step">
+          <h3>Copy it at once</h3>
+          <div class="step-body">
+            <p>
+              The key &mdash; 64 characters &mdash; appears in a box with the warning
+              that it will not be shown again. <strong>That is literal.</strong>
+              Afterwards you see only its first few characters. If you lose it,
+              delete it and generate another.
+            </p>
+          </div>
+        </li>
+      </ol>
+
+      <p style="margin-top:1.1rem">
+        To save the key on your own machine, paste this into a Jupyter cell,
+        putting your key between the quotes:
+      </p>
+      <div class="code"><pre>from pathlib import Path
+import json
+
+key = "PASTE-YOUR-KEY-HERE"
+
+dst = Path.home() / ".config" / "lsms_library" / "config.yml"
+dst.parent.mkdir(parents=True, exist_ok=True)
+dst.write_text("microdata_api_key: " + json.dumps(key) + "\n")
+print("saved to", dst)</pre></div>
+      <p class="meta">
+        That makes the folder for you, so you do not have to go looking for a
+        hidden directory. Restart the kernel afterwards
+        (<strong>Kernel &rarr; Restart Kernel</strong>) so the library picks it
+        up.
+      </p>
+
+      <div class="note warn" style="margin-top:1rem">
+        <span class="note-label">Three things to know</span>
+        <p>
+          <strong>Treat the key like a password.</strong> It carries your
+          identity and your permissions &mdash; anyone holding it acts as you.
+          Never put it in a shared notebook, an email, or a git repository.
+        </p>
+        <p>
+          <strong>It expires after a year</strong>, and you may hold at most
+          five at a time. Both are visible on the same profile page.
+        </p>
+        <p>
+          <strong>A bad or expired key reports
+          <code class="inline">LOGIN_REQUIRED</code></strong>, not &ldquo;bad
+          key&rdquo;. If downloads start failing that way, generate a fresh
+          one rather than assuming you are signed out.
+        </p>
+      </div>
+
+      <p class="meta" style="margin-top:1rem">
+        None of the five sessions depends on any of this, and the workshop
+        server works without it &mdash; so if registration is slow, it is not
+        something to worry about before Tuesday.
       </p>
     </div>
   </section>
