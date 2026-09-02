@@ -745,16 +745,43 @@ print(roster.shape)</pre></div>
           <code class="inline">conda install -y -c conda-forge gnupg</code>
           inside the <code class="inline">surveys</code> environment.</span>
         </p>
+        <p>
+          Installing GnuPG is the fix worth pursuing. <strong>If it truly
+          cannot be made to work, a free World Bank Microdata key is a
+          fallback</strong> &mdash; register, accept the terms for the LSMS
+          collections, and save the key in a file named
+          <code class="inline">config.yml</code> inside a folder called
+          <code class="inline">.config/lsms_library</code> in your home
+          directory, containing one line:
+        </p>
+        <div class="code"><pre>microdata_api_key: your_key_here</pre></div>
+        <p class="meta">
+          Be aware this is the slower road, not an equivalent one. The key does
+          not replace GnuPG for reaching the fast shared cache; what it does is
+          let the library download from the World Bank directly instead, which
+          takes considerably longer and has more ways to fail. Prefer GnuPG,
+          and if neither works, simply use the workshop server &mdash; it is what
+          the sessions run on. Registration at
+          <a href="https://microdata.worldbank.org/">microdata.worldbank.org</a>
+          is free and worth having regardless, since it gives you the raw
+          survey files for your own research.
+        </p>
       </div>
     </div>
 
     <div class="note relief">
       <span class="note-label">You do not need a World Bank account</span>
       <p>
-        The workshop data is reachable without one. You may see the library
-        mention a World Bank Microdata API key — ignore it. Registering is
-        free and worth doing eventually if you want raw survey files for your
-        own research, but it is not needed for any of the five sessions.
+        Nothing in the five sessions requires one, and everything on the
+        workshop server works without it. You may see the library mention a
+        World Bank Microdata API key; you can ignore that.
+      </p>
+      <p>
+        The one time it helps: if a local installation keeps failing with
+        <code class="inline">NoCredentialsError</code> and GnuPG cannot be
+        made to work, a free key gives the library a slower fallback route to
+        the data. See that entry above. It is worth having eventually for your
+        own research in any case, since it gives you the raw survey files.
       </p>
     </div>
   </section>
