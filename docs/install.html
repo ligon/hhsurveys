@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How to install the software for the Analysis of Household Surveys workshop, University of Ghana. Optional preparation; the workshop runs on a shared server either way.">
+<title>Before Session One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --paper:      #F1F3F1;
+    --surface:    #FFFFFF;
+    --surface-2:  #E9EDEA;
+    --ink:        #14202B;
+    --ink-soft:   #55646F;
+    --ink-faint:  #7E8C93;
+    --accent:     #0F5F5C;
+    --accent-bg:  #E2EDEB;
+    --ochre:      #8A5F10;
+    --ochre-bg:   #F4EBD8;
+    --pass:       #2C6E4F;
+    --stop:       #9E3B3B;
+    --stop-bg:    #F6E6E4;
+    --rule:       #D5DBD7;
+    --code-bg:    #16232B;
+    --code-ink:   #DCE6E4;
+
+    --measure: 68ch;
+    --step-1: 0.78rem;
+    --step0:  1rem;
+    --step1:  1.18rem;
+    --step2:  1.5rem;
+    --step3:  2rem;
+    --step4:  2.9rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #0F1417;
+      --surface:   #161D21;
+      --surface-2: #1D262A;
+      --ink:       #E3E9E6;
+      --ink-soft:  #A3B0AE;
+      --ink-faint: #7C8A89;
+      --accent:    #5FBDB6;
+      --accent-bg: #16302F;
+      --ochre:     #D2A24C;
+      --ochre-bg:  #2E2617;
+      --pass:      #6FBF95;
+      --stop:      #E08585;
+      --stop-bg:   #331F1F;
+      --rule:      #28333A;
+      --code-bg:   #0A1013;
+      --code-ink:  #D3DEDC;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:     #0F1417;
+    --surface:   #161D21;
+    --surface-2: #1D262A;
+    --ink:       #E3E9E6;
+    --ink-soft:  #A3B0AE;
+    --ink-faint: #7C8A89;
+    --accent:    #5FBDB6;
+    --accent-bg: #16302F;
+    --ochre:     #D2A24C;
+    --ochre-bg:  #2E2617;
+    --pass:      #6FBF95;
+    --stop:      #E08585;
+    --stop-bg:   #331F1F;
+    --rule:      #28333A;
+    --code-bg:   #0A1013;
+    --code-ink:  #D3DEDC;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  img { max-width: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: var(--step0);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: clamp(1.75rem, 5vw, 4rem) clamp(1.1rem, 4vw, 2rem) 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+  }
+
+  /* ---- masthead ---- */
+  .masthead { display: flex; flex-direction: column; gap: 1rem; }
+
+  .eyebrow {
+    font-size: var(--step-1);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: baseline;
+  }
+  .eyebrow .sep { color: var(--ink-faint); }
+
+  h1 {
+    font-family: Spectral, Georgia, "Times New Roman", serif;
+    font-size: var(--step4);
+    line-height: 1.08;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-family: Spectral, Georgia, serif;
+    font-size: var(--step1);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 58ch;
+  }
+
+  .rule-thick {
+    height: 3px;
+    background: var(--ink);
+    border: 0;
+    margin: 0;
+  }
+
+  /* ---- generic blocks ---- */
+  section { display: flex; flex-direction: column; gap: 1rem; }
+
+  h2 {
+    font-family: Spectral, Georgia, serif;
+    font-size: var(--step2);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: var(--step0);
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  p { margin: 0; max-width: 62ch; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  strong { font-weight: 600; }
+
+  /* ---- callouts ---- */
+  .note {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.15rem 1.3rem;
+    border-radius: 3px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+  }
+  .note.warn   { border-left-color: var(--ochre); background: var(--ochre-bg); }
+  .note.relief { border-left-color: var(--accent); background: var(--accent-bg); }
+
+  .note-label {
+    font-size: var(--step-1);
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .note.warn .note-label { color: var(--ochre); }
+  .note.relief .note-label { color: var(--accent); }
+
+  /* ---- os switcher ---- */
+  .os-switch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.35rem;
+    background: var(--surface-2);
+    border-radius: 4px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    box-shadow: 0 6px 14px -12px rgba(0,0,0,0.5);
+  }
+  .os-switch button {
+    flex: 1 1 auto;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background 0.14s ease, color 0.14s ease;
+  }
+  .os-switch button:hover { color: var(--ink); }
+  .os-switch button[aria-selected="true"] {
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+  }
+
+  /* ---- steps ---- */
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.1rem;
+    counter-reset: step;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 2.1rem 1fr;
+    gap: 0.35rem 0.95rem;
+    align-items: start;
+  }
+  .step::before {
+    counter-increment: step;
+    content: counter(step);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border-radius: 50%;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: grid;
+    place-items: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .step > h3 { align-self: center; }
+  .step-body {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .meta {
+    font-size: var(--step-1);
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---- code ---- */
+  .code {
+    position: relative;
+    background: var(--code-bg);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .code pre {
+    margin: 0;
+    padding: 0.95rem 3.6rem 0.95rem 1rem;
+    overflow-x: auto;
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.855rem;
+    line-height: 1.65;
+    color: var(--code-ink);
+    tab-size: 2;
+  }
+  .code.scroll pre { max-height: 22rem; overflow-y: auto; }
+
+  .copy {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font: inherit;
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0.3rem 0.55rem;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 3px;
+    background: rgba(255,255,255,0.07);
+    color: #C3D0CE;
+    cursor: pointer;
+  }
+  .copy:hover { background: rgba(255,255,255,0.15); color: #fff; }
+  .copy.done { color: #86D9AE; border-color: #86D9AE; }
+
+  code.inline {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.87em;
+    background: var(--surface-2);
+    padding: 0.1em 0.36em;
+    border-radius: 3px;
+    word-break: break-word;
+  }
+
+  /* ---- expected output ---- */
+  .output {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+  }
+  .output pre {
+    margin: 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .output .ok { color: var(--pass); font-weight: 500; }
+
+  /* ---- troubleshooting ---- */
+  .trouble {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+  .fault {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--stop);
+    border-radius: 3px;
+    padding: 1rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .fault-msg {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--stop);
+    background: var(--stop-bg);
+    padding: 0.5rem 0.65rem;
+    border-radius: 3px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .fault h3 { font-size: 0.95rem; }
+
+  details {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.5rem 0.9rem;
+  }
+  details[open] { padding-bottom: 0.9rem; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.94rem;
+    padding: 0.4rem 0;
+    list-style-position: outside;
+  }
+  summary::marker { color: var(--accent); }
+  details > *:not(summary) { margin-top: 0.75rem; }
+
+  ul.plain { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem; }
+  ul.plain li { max-width: 60ch; }
+
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+    color: var(--ink-faint);
+    font-size: 0.87rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Analysis of Household Surveys</span>
+      <span class="sep">/</span>
+      <span>University of Ghana</span>
+    </div>
+    <h1>Before Session One</h1>
+    <hr class="rule-thick">
+    <p class="standfirst">
+      How to put Python and the survey library on your own laptop. This is
+      optional preparation, not a requirement — but if it works, you will
+      leave the workshop with a setup you can keep using.
+    </p>
+  </header>
+
+  <section>
+    <div class="note relief">
+      <span class="note-label">Read this first</span>
+      <p>
+        <strong>You do not need to finish this to attend.</strong> The five
+        sessions run on a shared server that you reach through a web browser,
+        so everything we do in class will work even if nothing below succeeds.
+        Try it anyway, and tell us how far you got — that is genuinely useful
+        to us, and a failure report costs you nothing.
+      </p>
+    </div>
+
+    <div class="note warn">
+      <span class="note-label">Do this at home, on good wifi</span>
+      <p>
+        The download is roughly <strong>1.3&nbsp;GB</strong>, and the survey
+        data adds a few hundred megabytes more. Please do not start it in the
+        classroom or on mobile data — twenty laptops downloading at once will
+        simply stall, and you will lose the session. Set aside an evening
+        somewhere with a good connection.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Choose your computer</h2>
+    <p class="meta">Every instruction below changes to match this choice.</p>
+    <div class="os-switch" role="tablist" aria-label="Operating system">
+      <button role="tab" data-os="win"   aria-selected="false">Windows</button>
+      <button role="tab" data-os="mac"   aria-selected="false">macOS</button>
+      <button role="tab" data-os="linux" aria-selected="false">Linux</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>The four steps</h2>
+
+    <ol class="steps">
+
+      <!-- STEP 1 -->
+      <li class="step">
+        <h3>Install Miniforge</h3>
+        <div class="step-body">
+          <p>
+            Miniforge gives you Python and a way to install scientific
+            packages. If you already have Anaconda or Miniconda, you can skip
+            this step and use that instead.
+          </p>
+
+          <div data-os="win">
+            <p>
+              Download and run the installer, accepting every default:
+            </p>
+            <p>
+              <a href="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe">Miniforge3-Windows-x86_64.exe</a>
+            </p>
+            <p class="meta">
+              When it finishes you will have a new program in the Start menu
+              called <strong>Miniforge Prompt</strong>. Every command on this
+              page gets typed there — not in Command Prompt or PowerShell.
+            </p>
+          </div>
+
+          <div data-os="mac">
+            <p>
+              Open <strong>Terminal</strong> (press <code class="inline">Cmd</code>&nbsp;+&nbsp;<code class="inline">Space</code>,
+              type <em>terminal</em>, press Return), then paste these three
+              lines one at a time:
+            </p>
+            <div class="code"><pre>curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh"
+bash Miniforge3-MacOSX-$(uname -m).sh -b
+~/miniforge3/bin/conda init zsh</pre></div>
+            <p class="meta">
+              Then close Terminal and open it again. You should see
+              <code class="inline">(base)</code> at the start of the line.
+            </p>
+          </div>
+
+          <div data-os="linux">
+            <p>Open a terminal and paste these three lines one at a time:</p>
+            <div class="code"><pre>curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-$(uname -m).sh"
+bash Miniforge3-Linux-$(uname -m).sh -b
+~/miniforge3/bin/conda init bash</pre></div>
+            <p class="meta">
+              Then close the terminal and open it again. You should see
+              <code class="inline">(base)</code> at the start of the line.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <!-- STEP 2 -->
+      <li class="step">
+        <h3 data-os="win">Install GnuPG</h3>
+        <h3 data-os="mac linux">Create the workshop environment</h3>
+        <div class="step-body">
+
+          <div data-os="win">
+            <p>
+              The library uses a tool called GnuPG to unlock its data
+              downloads. On Windows it does not come with Miniforge, so it
+              needs its own installer. Download <strong>Gpg4win</strong> and
+              run it, accepting the defaults:
+            </p>
+            <p><a href="https://www.gpg4win.org/download.html">gpg4win.org/download.html</a></p>
+            <p class="meta">
+              You can decline the donation prompt. You do not need to create
+              any keys, and you will never open this program — the library
+              uses it in the background.
+            </p>
+            <p>
+              Now open the <strong>Miniforge Prompt</strong> from the Start
+              menu and paste these two lines, one at a time:
+            </p>
+            <div class="code"><pre>conda create -y -n surveys python=3.12 git
+conda activate surveys</pre></div>
+            <p class="meta">
+              The first line downloads a few hundred megabytes and takes a
+              while. When the second finishes, the line should begin with
+              <code class="inline">(surveys)</code>.
+            </p>
+          </div>
+
+          <div data-os="mac linux">
+            <p>
+              This creates a separate workspace called
+              <code class="inline">surveys</code>, so nothing here can disturb
+              other software on your computer. Paste these two lines, one at a
+              time:
+            </p>
+            <div class="code"><pre>conda create -y -n surveys python=3.12 git gnupg
+conda activate surveys</pre></div>
+            <p class="meta">
+              The first line downloads a few hundred megabytes and takes a
+              while. When the second finishes, the line should begin with
+              <code class="inline">(surveys)</code>.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <!-- STEP 3 -->
+      <li class="step">
+        <h3>Install the survey library</h3>
+        <div class="step-body">
+          <p>
+            With <code class="inline">(surveys)</code> showing at the start of
+            your line, paste:
+          </p>
+          <div class="code"><pre>pip install LSMS_Library &quot;pandas&lt;3&quot; jupyterlab</pre></div>
+          <p class="meta">
+            This is the big one — about 1.1&nbsp;GB and roughly 180 packages.
+            Expect anywhere from a few minutes to the better part of an hour,
+            depending on your connection. It is finished when you get your
+            prompt back and see no red <code class="inline">ERROR</code> text.
+          </p>
+        </div>
+      </li>
+
+      <!-- STEP 4 -->
+      <li class="step">
+        <h3>Check that it worked</h3>
+        <div class="step-body">
+          <p>Start Jupyter by pasting:</p>
+          <div class="code"><pre>jupyter lab</pre></div>
+          <p>
+            A page opens in your browser. Click
+            <strong>Notebook&nbsp;→&nbsp;Python&nbsp;3</strong>, paste the
+            five lines below into the box, and press
+            <code class="inline">Shift</code>&nbsp;+&nbsp;<code class="inline">Return</code>.
+          </p>
+          <div class="code"><pre>import lsms_library as ll
+
+ghana = ll.Country('GhanaLSS')
+print(ghana.waves)
+
+roster = ghana.household_roster()
+print(roster.shape)</pre></div>
+          <p class="meta">
+            The first run downloads real survey data and is slow — a minute on
+            a fast connection, considerably longer on a slow one. Later runs
+            take a couple of seconds, because the data is then stored on your
+            machine.
+          </p>
+
+          <h3>What success looks like</h3>
+          <div class="output"><pre><span class="ok">['1987-88', '1988-89', '1991-92', '1998-99', '2005-06', '2012-13', '2016-17']
+(246594, 8)</span></pre></div>
+          <p>
+            That is the Ghana Living Standards Survey: seven rounds spanning
+            thirty years, and 246,594 people in the household rosters. If you
+            see those two lines, you are done — <strong>please reply and say
+            so.</strong>
+          </p>
+
+          <div class="note">
+            <span class="note-label">Harmless messages you can ignore</span>
+            <p>
+              Lines mentioning <code class="inline">DVC unavailable</code>,
+              <code class="inline">Falling back to manual aggregation</code>,
+              <code class="inline">Issue with categorical mapping</code>, or
+              matplotlib <code class="inline">building the font cache</code>
+              are all normal. They are not errors. Only the red
+              <code class="inline">Traceback</code> blocks matter.
+            </p>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>If something fails</h2>
+    <p>
+      These are the three failures we expect. In every case, the answer is to
+      fix it if it is quick, and otherwise to stop and tell us — you will not
+      be behind.
+    </p>
+
+    <div class="trouble">
+
+      <div class="fault">
+        <h3>Python is too old</h3>
+        <div class="fault-msg">ERROR: Could not find a version that satisfies the requirement LSMS_Library</div>
+        <p>
+          The library needs Python 3.11 or newer. This usually means step 2
+          was skipped, or an older Anaconda is in charge. Check with
+          <code class="inline">python --version</code>; if it is below 3.11,
+          run step 2 again and make sure the line begins with
+          <code class="inline">(surveys)</code>.
+        </p>
+      </div>
+
+      <div class="fault">
+        <h3>Git is missing</h3>
+        <div class="fault-msg">ImportError: Failed to initialize: Bad git executable.</div>
+        <p>
+          The library cannot even start without <code class="inline">git</code>.
+          It is installed in step 2, so this points to the same cause: the
+          <code class="inline">surveys</code> environment is not active.
+          Run <code class="inline">conda activate surveys</code> and try again.
+        </p>
+      </div>
+
+      <div class="fault">
+        <h3>Pandas is too new</h3>
+        <div class="fault-msg">TypeError: Invalid value '&lt;ArrowStringArray&gt; ... dtype: str' for dtype 'float64'</div>
+        <p>
+          The library does not yet work with pandas 3. This is why step 3
+          asks for <code class="inline">"pandas&lt;3"</code>. If you
+          installed without it, fix it with
+          <code class="inline">pip install "pandas&lt;3"</code> and restart
+          your notebook kernel.
+        </p>
+      </div>
+
+      <div class="fault">
+        <h3>GnuPG is missing</h3>
+        <div class="fault-msg">botocore.exceptions.NoCredentialsError: Unable to locate credentials</div>
+        <p>
+          This message is misleading: it almost always means
+          <code class="inline">gpg</code> is not installed, not that anything
+          is wrong with your account. <span data-os="win">On Windows, install
+          Gpg4win from step 2 and then close and reopen the Miniforge
+          Prompt.</span><span data-os="mac linux">Run
+          <code class="inline">conda install -y -c conda-forge gnupg</code>
+          inside the <code class="inline">surveys</code> environment.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="note relief">
+      <span class="note-label">You do not need a World Bank account</span>
+      <p>
+        The workshop data is reachable without one. You may see the library
+        mention a World Bank Microdata API key — ignore it. Registering is
+        free and worth doing eventually if you want raw survey files for your
+        own research, but it is not needed for any of the five sessions.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tell us how it went</h2>
+    <p>
+      Whether it worked or not, please send one line saying which computer you
+      used and where you stopped. If you want to give us a more precise
+      report, run the fuller check below instead of the five lines in step 4 —
+      it tests each requirement separately and prints two lines to copy into
+      your reply.
+    </p>
+
+    <details>
+      <summary>The fuller check (optional)</summary>
+      <p class="meta">
+        Paste all of this into a Jupyter cell, or save it as
+        <code class="inline">check_setup.py</code> and run
+        <code class="inline">python check_setup.py</code>.
+      </p>
+      <div class="code scroll"><pre>&quot;&quot;&quot;Workshop setup check: Analysis of Household Surveys, U. of Ghana.
+
+Run this after installing.  It checks each requirement in turn and
+prints a short report.  Nothing here changes your computer; it only
+looks at what is already installed and downloads one small table.
+
+Usage:
+    python check_setup.py
+
+or paste the whole file into a Jupyter cell and run it.
+&quot;&quot;&quot;
+
+import platform
+import shutil
+import sys
+
+RESULTS = []
+
+
+def record(name, ok, detail=&quot;&quot;):
+    RESULTS.append((name, ok, detail))
+    mark = &quot;PASS&quot; if ok else &quot;FAIL&quot;
+    line = f&quot;[{mark}] {name}&quot;
+    if detail:
+        line += f&quot; -- {detail}&quot;
+    print(line, flush=True)
+    return ok
+
+
+def main():
+    print(&quot;=&quot; * 62)
+    print(&quot;Analysis of Household Surveys -- setup check&quot;)
+    print(&quot;=&quot; * 62)
+    print(f&quot;System: {platform.system()} {platform.machine()}&quot;)
+    print(f&quot;Python: {sys.version.split()[0]}&quot;)
+    print(&quot;-&quot; * 62)
+
+    # 1. Python version -------------------------------------------------
+    ver = sys.version_info
+    record(
+        &quot;Python 3.11 or newer&quot;,
+        ver &gt;= (3, 11),
+        f&quot;found {ver.major}.{ver.minor}.{ver.micro}&quot;
+        + (&quot;&quot; if ver &gt;= (3, 11) else &quot;; this is too old&quot;),
+    )
+
+    # 2. git on PATH -----------------------------------------------------
+    git = shutil.which(&quot;git&quot;)
+    record(
+        &quot;git is installed&quot;,
+        git is not None,
+        git or &quot;not found -- the library cannot even start without it&quot;,
+    )
+
+    # 3. gpg on PATH -----------------------------------------------------
+    gpg = shutil.which(&quot;gpg&quot;) or shutil.which(&quot;gpg2&quot;)
+    record(
+        &quot;gpg is installed&quot;,
+        gpg is not None,
+        gpg or &quot;not found -- data downloads will fail with a credentials error&quot;,
+    )
+
+    # 4. the library imports ---------------------------------------------
+    lib_ok = False
+    try:
+        import lsms_library as ll
+
+        lib_ok = record(
+            &quot;lsms_library imports&quot;,
+            True,
+            f&quot;version {getattr(ll, &#x27;__version__&#x27;, &#x27;unknown&#x27;)}&quot;,
+        )
+    except Exception as exc:  # noqa: BLE001 -- report anything to the student
+        record(&quot;lsms_library imports&quot;, False, f&quot;{type(exc).__name__}: {exc}&quot;)
+
+    # 5. Jupyter ----------------------------------------------------------
+    jupyter_exe = shutil.which(&quot;jupyter&quot;)
+    jupyter_mod = False
+    for mod in (&quot;jupyterlab&quot;, &quot;notebook&quot;, &quot;jupyter_server&quot;):
+        try:
+            __import__(mod)
+            jupyter_mod = True
+            break
+        except Exception:  # noqa: BLE001
+            continue
+    record(
+        &quot;Jupyter is installed&quot;,
+        bool(jupyter_exe or jupyter_mod),
+        (jupyter_exe or &quot;found as a Python package&quot;)
+        if (jupyter_exe or jupyter_mod)
+        else &quot;not found -- run: pip install jupyterlab&quot;,
+    )
+
+    # 6. real data downloads ----------------------------------------------
+    if lib_ok:
+        print(&quot;-&quot; * 62)
+        print(&quot;Downloading a table from the Ghana Living Standards Survey.&quot;)
+        print(&quot;This is the slow step -- one to several minutes on a first&quot;)
+        print(&quot;run, depending on your connection.  Later runs are fast,&quot;)
+        print(&quot;because the data is cached on your machine.&quot;)
+        print(&quot;-&quot; * 62, flush=True)
+        try:
+            import lsms_library as ll
+
+            ghana = ll.Country(&quot;GhanaLSS&quot;)
+            waves = ghana.waves
+            record(&quot;Ghana survey waves found&quot;, bool(waves), f&quot;{len(waves)} waves&quot;)
+            roster = ghana.household_roster()
+            record(
+                &quot;Ghana data downloads&quot;,
+                len(roster) &gt; 0,
+                f&quot;{len(roster):,} rows of household roster data&quot;,
+            )
+        except Exception as exc:  # noqa: BLE001
+            record(&quot;Ghana data downloads&quot;, False, f&quot;{type(exc).__name__}: {exc}&quot;)
+
+    # Report ---------------------------------------------------------------
+    print(&quot;=&quot; * 62)
+    failed = [name for name, ok, _ in RESULTS if not ok]
+    if not failed:
+        print(&quot;ALL CHECKS PASSED.  You are ready for the workshop.&quot;)
+    else:
+        print(&quot;SOME CHECKS FAILED:&quot;)
+        for name in failed:
+            print(f&quot;  - {name}&quot;)
+        print()
+        print(&quot;This is normal and it is not a problem.  The workshop runs&quot;)
+        print(&quot;on a shared server, so you can take part either way.&quot;)
+    print()
+    print(&quot;Please copy the two lines below into your reply:&quot;)
+    print(&quot;-&quot; * 62)
+    print(f&quot;REPORT {platform.system()}/{platform.machine()} py{ver.major}.{ver.minor}&quot;)
+    print(&quot;REPORT &quot; + (&quot;all-passed&quot; if not failed else &quot;failed: &quot; + &quot;, &quot;.join(failed)))
+    print(&quot;-&quot; * 62)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</pre></div>
+    </details>
+  </section>
+
+  <div class="footer">
+    <span>Analysis of Household Surveys — a five-session workshop, Department of Economics, University of Ghana.</span>
+    <span>Instructions verified against LSMS_Library 0.9.1 with pandas 2.3 on Python 3.11 and 3.12.</span>
+  </div>
+</div>
+
+<script>
+  // ---- OS switcher -------------------------------------------------
+  var OSES = ["win", "mac", "linux"];
+
+  function applyOS(os) {
+    document.querySelectorAll("[data-os]").forEach(function (el) {
+      if (el.matches(".os-switch button")) return;
+      var targets = el.getAttribute("data-os").split(/\s+/);
+      el.hidden = targets.indexOf(os) === -1;
+    });
+    document.querySelectorAll(".os-switch button").forEach(function (b) {
+      b.setAttribute("aria-selected", String(b.dataset.os === os));
+    });
+    try { localStorage.setItem("hhs-os", os); } catch (e) { /* private mode */ }
+  }
+
+  function guessOS() {
+    try {
+      var stored = localStorage.getItem("hhs-os");
+      if (stored && OSES.indexOf(stored) !== -1) return stored;
+    } catch (e) { /* ignore */ }
+    var ua = (navigator.userAgent || "") + " " + (navigator.platform || "");
+    if (/Win/i.test(ua)) return "win";
+    if (/Mac|iPhone|iPad/i.test(ua)) return "mac";
+    if (/Linux|X11/i.test(ua)) return "linux";
+    return "win";
+  }
+
+  document.querySelectorAll(".os-switch button").forEach(function (b) {
+    b.addEventListener("click", function () { applyOS(b.dataset.os); });
+  });
+
+  applyOS(guessOS());
+
+  // ---- copy buttons ------------------------------------------------
+  document.querySelectorAll(".code").forEach(function (block) {
+    var pre = block.querySelector("pre");
+    var btn = document.createElement("button");
+    btn.className = "copy";
+    btn.type = "button";
+    btn.textContent = "Copy";
+    btn.addEventListener("click", function () {
+      var text = pre.innerText;
+      var done = function () {
+        btn.textContent = "Copied";
+        btn.classList.add("done");
+        setTimeout(function () {
+          btn.textContent = "Copy";
+          btn.classList.remove("done");
+        }, 1800);
+      };
+      // Clipboard API is often blocked in embedded frames; fall back to
+      // selecting the text so the reader can copy it by hand.
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { selectFallback(pre, btn); });
+      } else {
+        selectFallback(pre, btn);
+      }
+    });
+    block.appendChild(btn);
+  });
+
+  function selectFallback(pre, btn) {
+    var range = document.createRange();
+    range.selectNodeContents(pre);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    var copied = false;
+    try { copied = document.execCommand("copy"); } catch (e) { copied = false; }
+    btn.textContent = copied ? "Copied" : "Selected — press Ctrl/Cmd+C";
+    btn.classList.add("done");
+    setTimeout(function () {
+      btn.textContent = "Copy";
+      btn.classList.remove("done");
+    }, 2600);
+  }
+</script>
+
+</body>
+</html>
