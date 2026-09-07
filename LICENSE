@@ -1,0 +1,30 @@
+This work is licensed under the Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International License.  To view a
+copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042,
+USA.
+
+Copyright (c) 2026 Ethan Ligon.
+
+Attribution and prior work
+--------------------------
+
+Some of this material is adapted, and the licence above is partly inherited
+rather than merely chosen.  ShareAlike requires a derivative to carry the
+same licence as its source, so CC BY-NC-SA 4.0 is the obligation here as
+well as the preference:
+
+  tutorials/jupyter_basics.org, sections 1-3
+      Adapted from EEP153 (Materials/Project0/python_intro_1.ipynb), which
+      is CC BY-NC-SA 4.0 and which in turn credits Berkeley's Data 8 course
+      for the same material.  Both attributions are kept in the tutorial
+      text itself; please keep them in any further adaptation.
+
+Everything else here -- lectures.org and the notebooks and slides generated
+from it, the other two tutorials, the GLSS7 exercise, and the workshop site
+-- is original to this repository.
+
+The survey microdata is NOT covered by this licence.  World Bank LSMS data
+cannot be freely redistributed; the workshop works from harmonized derived
+extracts, and participants who want raw access register for their own free
+World Bank Microdata keys.  See the workshop site for details.
