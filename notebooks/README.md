@@ -6,12 +6,18 @@ account and merges later updates without overwriting your own work.
 
 ## Start here if Python is new to you
 
-- `python_from_stata.ipynb` — a twenty-minute tutorial for people who have
-  used Stata. It covers the differences that actually cost time: objects
-  and methods, the index, `.loc`, and how missing values behave.
+Two tutorials, same material, twenty minutes each. Pick one:
 
-You do not need it to follow the sessions, but it will make them easier.
-Run it on the hub with the default **Python 3** kernel.
+- `python_from_stata.ipynb` — if you have used Stata. Explains each idea by
+  what it corresponds to in Stata, and what the obvious translation gets
+  wrong.
+- `python_from_scratch.ipynb` — if you have not. Same ground, built up from
+  the beginning without assuming the comparison.
+
+Both cover the things that actually cost time: objects and methods, the
+index, `.loc`, and how missing values behave. You do not need either to
+follow the sessions, but they will make them easier. Run them on the hub
+with the default **Python 3** kernel.
 
 ## Session notebooks
 
