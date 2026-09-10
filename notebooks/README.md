@@ -4,7 +4,13 @@ Notebooks are added here before each session. On the workshop hub, use the
 "Get the materials" link on the website — it pulls this folder into your
 account and merges later updates without overwriting your own work.
 
-Run everything with the default **Python 3** kernel.
+Each notebook records the kernel it needs, and JupyterLab picks it when you
+open the file. Most run on the default **Python 3** kernel (the released
+`lsms_library`). Session 2 and its four food exercises open on **Python 3
+(LSMS dev …)**, the library's development branch, which has the Lorenz
+curve function and data fixes the release lacks; if a notebook shows the
+wrong kernel in its top-right corner, click it and choose the one the
+notebook names.
 
 ## Start here
 
@@ -35,11 +41,31 @@ The notebooks read pre-built extracts from `/srv/data/extracts` on the hub
 (linked as `~/extracts` in your account) rather than downloading survey data
 themselves, which is why they start quickly.
 
-## Exercise
+## Exercises
 
 `glss7_sample_design.ipynb` — a longer piece of work on the sample design of
 the Ghana Living Standards Survey: reading a stratified two-stage design out
 of the weights it produced, and what goes wrong when you ignore it.
+
+Three shorter ones from session 2, all on Ghana 2016-17:
+
+- `food_sources.ipynb` — own production is about 29% of the value of food
+  and reaches the aggregate only if you value it; the multiplication nobody
+  performed, and whether the pattern holds in other countries.
+- `recall_and_diaries.ipynb` — the first of GLSS7's six food visits records
+  20% more than the others; what that is, and what to do with it.
+- `price_sources.ipynb` — the three price sources GLSS7 actually has, and
+  what the survey's own valuation question turns out to measure.
+
+Three more from the end of session 2, each scaffolding one of the deck's
+closing exercises:
+
+- `equivalence_scales.ipynb` — vary theta in C/A^theta and watch the
+  regional ranking; what moves is mostly the line, not the welfare.
+- `spatial_deflation.ipynb` — a regional Paasche index from the survey's own
+  unit values, and how much of the north–south gradient survives it (most).
+- `poverty_line.ipynb` — a food bundle from the second and third deciles,
+  priced and scaled to 2,900 kcal per adult equivalent.
 
 ## Licence
 
