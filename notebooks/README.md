@@ -4,13 +4,8 @@ Notebooks are added here before each session. On the workshop hub, use the
 "Get the materials" link on the website — it pulls this folder into your
 account and merges later updates without overwriting your own work.
 
-Each notebook records the kernel it needs, and JupyterLab picks it when you
-open the file. Most run on the default **Python 3** kernel (the released
-`lsms_library`). Session 2 and its four food exercises open on **Python 3
-(LSMS dev …)**, the library's development branch, which has the Lorenz
-curve function and data fixes the release lacks; if a notebook shows the
-wrong kernel in its top-right corner, click it and choose the one the
-notebook names.
+Run everything with the default **Python 3** kernel. If a notebook opens on
+"Python 3 (LSMS dev ...)", switch: Kernel -> Change Kernel -> Python 3.
 
 ## Start here
 
