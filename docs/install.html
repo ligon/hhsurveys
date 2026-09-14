@@ -3,6 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // Stamp a pinned theme onto the root element before the first paint, so a
+  // reader who has chosen Light or Dark never sees the other one flash by
+  // first.  The default, "system", stamps nothing: the prefers-color-scheme
+  // rules in the stylesheet decide, as they did before this switch existed.
+  try {
+    var hhsTheme = localStorage.getItem("hhs-theme");
+    if (hhsTheme === "light" || hhsTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", hhsTheme);
+    }
+  } catch (e) { /* private window, or storage blocked: fall back to system */ }
+</script>
 <meta name="description" content="How to install the software for the Analysis of Household Surveys workshop, University of Ghana. Optional preparation; the workshop runs on a shared server either way.">
 <title>Before Session One</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +47,8 @@
     --step2:  1.5rem;
     --step3:  2rem;
     --step4:  2.9rem;
+
+    color-scheme: light;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -55,6 +69,7 @@
       --rule:      #28333A;
       --code-bg:   #0A1013;
       --code-ink:  #D3DEDC;
+      color-scheme: dark;
     }
   }
 
@@ -75,6 +90,7 @@
     --rule:      #28333A;
     --code-bg:   #0A1013;
     --code-ink:  #D3DEDC;
+    color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
@@ -114,6 +130,34 @@
     align-items: baseline;
   }
   .eyebrow .sep { color: var(--ink-faint); }
+  .theme {
+    margin-left: auto;
+    align-self: center;
+    display: flex;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .theme button {
+    font: inherit;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-faint);
+    background: transparent;
+    border: 0;
+    padding: 0.3rem 0.55rem;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+  .theme button + button { border-left: 1px solid var(--rule); }
+  .theme button:hover { color: var(--ink-soft); }
+  .theme button[aria-pressed="true"] {
+    background: var(--accent-bg);
+    color: var(--accent);
+  }
+  .theme button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
   h1 {
     font-family: Spectral, Georgia, "Times New Roman", serif;
@@ -408,6 +452,11 @@
       <span>Analysis of Household Surveys</span>
       <span class="sep">/</span>
       <span>University of Ghana</span>
+      <div class="theme" role="group" aria-label="Colour theme">
+        <button type="button" data-set-theme="system" aria-pressed="true">System</button>
+        <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+        <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+      </div>
     </div>
     <h1>Before Session One</h1>
     <hr class="rule-thick">
@@ -1123,5 +1172,47 @@ if __name__ == &quot;__main__&quot;:
   }
 </script>
 
+<script>
+  // ---- Theme switch ------------------------------------------------
+  // Three states.  "system" removes the attribute and lets
+  // @media (prefers-color-scheme) decide -- which follows the operating
+  // system's appearance setting, and so flips at whatever hour the OS
+  // reckons the sun sets, not at local dusk.  "light" and "dark" pin it,
+  // which is what you want when the page is going on a wall: a projector
+  // cannot emit black, so dark mode is the worst case in a lit room.
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll("[data-set-theme]");
+    if (!buttons.length) { return; }
+
+    function stored() {
+      try { return localStorage.getItem("hhs-theme") || "system"; }
+      catch (e) { return "system"; }
+    }
+
+    function apply(pref) {
+      if (pref === "light" || pref === "dark") {
+        root.setAttribute("data-theme", pref);
+      } else {
+        root.removeAttribute("data-theme");
+      }
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].setAttribute(
+          "aria-pressed",
+          buttons[i].getAttribute("data-set-theme") === pref ? "true" : "false");
+      }
+    }
+
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function () {
+        var pref = this.getAttribute("data-set-theme");
+        try { localStorage.setItem("hhs-theme", pref); } catch (e) { /* private mode */ }
+        apply(pref);
+      });
+    }
+
+    apply(stored());
+  })();
+</script>
 </body>
 </html>
