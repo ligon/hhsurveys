@@ -264,8 +264,9 @@ warnings.filterwarnings("ignore")
 try:
     import lsms_library as ll
     g = ll.Country("GhanaLSS")
-    waves = sorted(g.waves())
-    print(f"    GLSS waves: {waves}")
+    # `waves' is a property, not a method -- see the worked example on the
+    # install page.  Calling it raises TypeError: 'list' object is not callable.
+    print(f"    GLSS waves: {g.waves}")
     roster = g.household_roster()
     print(f"    household roster: {roster.shape[0]:,} people x {roster.shape[1]} columns")
 except Exception as exc:
