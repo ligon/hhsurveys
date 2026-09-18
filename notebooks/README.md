@@ -1,11 +1,17 @@
 # Workshop notebooks
 
-Notebooks are added here before each session. On the workshop hub, use the
-"Get the materials" link on the website — it pulls this folder into your
-account and merges later updates without overwriting your own work.
+Sixteen notebooks: six sessions, three tutorials, and seven exercises.
+They are ordinary Jupyter notebooks and run anywhere the software is
+installed — see the [installation
+instructions](https://hhsurveys-workshop.ligonresearch.org/install.html).
+Sessions 4 to 6 also import `datamat`, which is not pulled in as a
+dependency of `LSMS_Library`, so install it alongside:
 
-Run everything with the default **Python 3** kernel. If a notebook opens on
-"Python 3 (LSMS dev ...)", switch: Kernel -> Change Kernel -> Python 3.
+    pip install LSMS_Library datamat jupyterlab
+
+The workshop was taught against `LSMS_Library` 0.14.0 and `CFEDemands`
+0.10.0. On the workshop hub, run everything with the default **Python 3**
+kernel; the hub closes at the end of September 2026.
 
 ## Start here
 
@@ -28,13 +34,21 @@ them easier.
 
 ## Session notebooks
 
-`session1.ipynb` through `session5.ipynb`, one per meeting. Each follows the
+`session1.ipynb` through `session6.ipynb`, one per meeting. Each follows the
 slides projected in the room, so the headings match and you can find your
-place.
+place. The sixth is online and asynchronous: frontiers, and the capstone.
 
-The notebooks read pre-built extracts from `/srv/data/extracts` on the hub
-(linked as `~/extracts` in your account) rather than downloading survey data
-themselves, which is why they start quickly.
+1. `session1.ipynb` — design, sampling, and collection
+2. `session2.ipynb` — describing welfare (theory; almost no computation)
+3. `session3.ipynb` — elicitation of consumption and survey design
+4. `session4.ipynb` — demand and welfare
+5. `session5.ipynb` — from cross-sections to panels
+6. `session6.ipynb` — capstone and frontiers
+
+On the hub a few of them read pre-built extracts from `/srv/data/extracts`
+(linked as `~/extracts`) rather than downloading survey data themselves,
+which is why they start quickly. Installed locally, `LSMS_Library` fetches
+what it needs itself.
 
 ## Exercises
 
@@ -42,7 +56,7 @@ themselves, which is why they start quickly.
 the Ghana Living Standards Survey: reading a stratified two-stage design out
 of the weights it produced, and what goes wrong when you ignore it.
 
-Three shorter ones from session 2, all on Ghana 2016-17:
+Three shorter ones from session 3, all on Ghana 2016-17:
 
 - `food_sources.ipynb` — own production is about 29% of the value of food
   and reaches the aggregate only if you value it; the multiplication nobody
@@ -52,7 +66,7 @@ Three shorter ones from session 2, all on Ghana 2016-17:
 - `price_sources.ipynb` — the three price sources GLSS7 actually has, and
   what the survey's own valuation question turns out to measure.
 
-Three more from the end of session 2, each scaffolding one of the deck's
+Three more from the end of session 3, each scaffolding one of the deck's
 closing exercises:
 
 - `equivalence_scales.ipynb` — vary theta in C/A^theta and watch the

@@ -16,7 +16,7 @@
   } catch (e) { /* private window, or storage blocked: fall back to system */ }
 </script>
 <title>Analysis of Household Surveys</title>
-<meta name="description" content="A five-session workshop on the analysis of household survey data. Department of Economics, University of Ghana.">
+<meta name="description" content="A six-session workshop on the analysis of household survey data, taught September 2026 at the Department of Economics, University of Ghana. Notebooks, slides and notes are open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -122,7 +122,7 @@
 
   <header>
     <div class="eyebrow">
-      <span>Department of Economics</span><span class="sep">/</span><span>University of Ghana</span><span class="sep">/</span><span>IGC</span>
+      <span>Department of Economics</span><span class="sep">/</span><span>University of Ghana</span><span class="sep">/</span><span>IGC</span><span class="sep">/</span><span>STEG</span>
       <div class="theme" role="group" aria-label="Colour theme">
         <button type="button" data-set-theme="system" aria-pressed="true">System</button>
         <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
@@ -132,22 +132,48 @@
     <h1>Analysis of Household Surveys</h1>
     <hr class="thick">
     <p class="standfirst">
-      A short, hands-on workshop: five two-hour meetings over two weeks,
-      working with real surveys from raw files to a reproducible result.
+      A six-session workshop on the analysis of household survey data, taught
+      in September 2026: from raw survey files to a reproducible result,
+      working throughout with surveys from the region. The materials below
+      are complete and open.
     </p>
   </header>
 
   <section>
     <div class="cta">
-      <a class="btn" href="https://hhsurveys.ligonresearch.org" target="hhsurveys-hub">Open the workshop hub</a>
-      <a class="btn alt" href="https://hhsurveys.ligonresearch.org/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fligon%2Fhhsurveys&amp;urlpath=lab%2Ftree%2Fhhsurveys%2Fnotebooks&amp;branch=main" target="hhsurveys-hub">Get the materials</a>
-      <a class="btn alt" href="install.html">Install on your own laptop</a>
+      <a class="btn" href="https://github.com/ligon/hhsurveys/tree/main/notebooks">Session notebooks</a>
+      <a class="btn alt" href="#materials">Slides and notes (PDF)</a>
+      <a class="btn alt" href="install.html">Install on your own computer</a>
       <a class="btn alt" href="https://claude.ai/code/artifact/7746f698-7b43-49d0-b2fc-22f7a1fb6496" target="_blank" rel="noopener">LSMS Library Coverage</a>
     </div>
     <p style="margin-top:1rem;color:var(--ink-faint);font-size:.9rem">
-      The second link pulls the session notebooks into your hub account.
-      Click it again after any update &mdash; your own edits are kept.
+      Sixteen notebooks: six sessions, three tutorials, and seven exercises.
+      They are ordinary Jupyter notebooks and run anywhere the software is
+      installed.
     </p>
+  </section>
+
+  <!-- The workshop hub (hhsurveys.ligonresearch.org) closes at the end of
+       September 2026.  Delete this note once it is gone, along with any
+       remaining hub links.  -->
+  <section>
+    <div class="note">
+      <span class="label">For participants: the workshop hub closes 30 September 2026</span>
+      <p>
+        The shared server was rented for the teaching and is being shut down.
+        Before it goes, log in and download anything of yours you want to
+        keep &mdash; your own edited notebooks, and the
+        <code>for-your-laptop</code> folder in your home directory, which
+        holds the credentials that give the survey library its fast download
+        route. After that date the login will simply stop working.
+      </p>
+      <p style="margin-bottom:0">
+        Nothing else is lost: the notebooks, slides and notes are all on this
+        site and in the
+        <a href="https://github.com/ligon/hhsurveys">materials repository</a>,
+        and the library reads the surveys directly once installed.
+      </p>
+    </div>
   </section>
 
   <section>
@@ -165,58 +191,118 @@
       A careful analyst needs both halves, and the second is the one usually
       missing. The workshop follows Deaton's progression from design to
       description to demand to dynamics, working throughout with data from
-      the region.
+      the region: Ghana's Living Standards Surveys as the running local
+      example, Uganda's National Panel Survey for the panel and demand
+      material, and comparisons across the LSMS countries where they earn
+      their place.
     </p>
   </section>
 
   <section>
-    <h2>The five sessions</h2>
+    <h2>The six sessions</h2>
     <ol class="sessions">
       <li>
         <h3>Design, sampling, and collection</h3>
-        <p>What a careful analyst should know before touching the data. Cross-section, repeated cross-section, and panel, and what each lets us identify; weights, stratification, and clustering; attrition versus comparability across rounds.</p>
+        <p>What to know before touching the data: population, frame, weights.
+        Two-stage cluster sampling and stratification, worked through on
+        Ghana's GLSS7 and a regional sample from Guinea-Bissau &mdash; reading
+        a design back out of the weights it produced, and watching an
+        unweighted population pyramid misstate the number of children.</p>
       </li>
       <li>
         <h3>Describing welfare</h3>
-        <p>Constructing consumption aggregates, then poverty, inequality, and the shape of the distribution, by region and across rounds. The discipline of describing the data carefully before modelling it.</p>
+        <p>The theory the measurement rests on. What object a consumption
+        aggregate is standing in for, the household's dynamic problem and the
+        marginal utility of money as a welfare index, and an explicit
+        accounting of the assumptions &mdash; homotheticity, cardinalisation,
+        separable durables &mdash; that dividing expenditure by a price index
+        quietly buys.</p>
+      </li>
+      <li>
+        <h3>Elicitation of consumption and survey design</h3>
+        <p>How the number in the aggregate is actually produced: item lists,
+        recall periods and diaries, own production and how to price it,
+        durables and imputed rent, spatial deflation, equivalence scales.
+        Then poverty and inequality on Ghana &mdash; FGT, Lorenz, Gini,
+        Atkinson &mdash; weighted and unweighted, across four rounds.</p>
       </li>
       <li>
         <h3>Demand and welfare</h3>
-        <p>Engel curves, budget shares, equivalence scales, and spatial price deflation, building to a first demand system. This is where household surveys earn their keep for policy.</p>
+        <p>Engel curves and the Working&ndash;Leser form on GLSS7; unit values
+        and the quality correction; the rank of a demand system, and why rank
+        above one means no single price index will do. Then a
+        constant-Frisch-elasticity demand system fitted to Uganda's eight
+        waves, which needs neither prices nor total expenditure, and the exact
+        welfare cost of a price change rather than the first-order
+        approximation.</p>
       </li>
       <li>
-        <h3>From cross-sections to dynamics</h3>
-        <p>Pseudo-panels built from repeated cross-sections, then genuine panel methods &mdash; fixed effects, two-way fixed effects, and clustered inference &mdash; on a true multi-wave panel.</p>
+        <h3>From cross-sections to panels</h3>
+        <p>Fixed effects and two-way fixed effects as a generalised double
+        difference, strict exogeneity, attrition, and clustered inference.
+        Worked on Ghana's GLSS1&ndash;2 farm panel, where Mundlak's management
+        bias is visible in the data, and on Uganda's NPS; then pseudo-panels
+        from repeated cross-sections, for when there is no panel to be had.</p>
       </li>
       <li>
-        <h3>Capstone and frontiers</h3>
-        <p>Participants run a small reproducible analysis of a survey of their choosing. We close with where the methods break down: short panels and dynamic models, measurement error, and endogeneity.</p>
+        <h3>Capstone and frontiers &mdash; online</h3>
+        <p>Where the methods break down: a full risk-sharing test on Uganda
+        and why it has power only against idiosyncratic shocks, Nickell bias
+        in short dynamic panels, non-classical measurement error, and
+        endogeneity. The capstone takes a survey of your own choosing through
+        a small analysis that runs from a clean kernel.</p>
       </li>
     </ol>
   </section>
 
+  <section id="materials">
+    <h2>Slides, notes, and the syllabus</h2>
+    <p>
+      One deck per session, as projected in the room, plus a single set of
+      running notes covering all six.
+    </p>
+    <ul class="refs">
+      <li><a href="pdf/session1.pdf">Session 1</a> &mdash; Design, sampling, and collection</li>
+      <li><a href="pdf/session2.pdf">Session 2</a> &mdash; Describing welfare</li>
+      <li><a href="pdf/session3.pdf">Session 3</a> &mdash; Elicitation of consumption and survey design</li>
+      <li><a href="pdf/session4.pdf">Session 4</a> &mdash; Demand and welfare</li>
+      <li><a href="pdf/session5.pdf">Session 5</a> &mdash; From cross-sections to panels</li>
+      <li><a href="pdf/session6.pdf">Session 6</a> &mdash; Capstone and frontiers</li>
+      <li><a href="pdf/notes.pdf">Session notes</a> &mdash; the same material as continuous prose, with the derivations the slides compress</li>
+      <li><a href="pdf/syllabus.pdf">Syllabus</a> &mdash; schedule, texts, and what you should be able to do afterwards</li>
+      <li><a href="pdf/HOWTO_MUNDLAK.pdf">Mundlak in practice</a> &mdash; a short handout on the within transformation and the farm-means test, cited throughout session 5</li>
+    </ul>
+  </section>
+
   <section>
-    <h2>Before you arrive</h2>
-    <div class="note">
-      <span class="label">You do not need to install anything</span>
-      <p>
-        The sessions run on the workshop hub, in your browser. You will get
-        a username and set your own password at first login &mdash; it must be
-        at least seven characters. Bring a laptop if you have one.
-      </p>
-    </div>
-    <p style="margin-top:1rem">
-      If you would like the software on your own machine as well &mdash; worth
-      doing, since it is what you will use after the workshop &mdash; the
-      <a href="install.html">installation instructions</a> assume no prior
-      Python and take you through it a step at a time. Do it at home on a good connection: it is roughly a 1.3&nbsp;GB
-      download, and twenty laptops installing at once in the classroom will
-      simply stall.
+    <h2>Working with this afterwards</h2>
+    <p>
+      The <a href="install.html">installation instructions</a> assume no prior
+      Python and take you through it a step at a time. It is roughly a
+      1.3&nbsp;GB download, so do it on a connection you trust. Installed
+      locally, the library downloads the survey data itself; the sessions read
+      pre-built extracts only because that was faster in a classroom.
     </p>
     <p>
-      <strong>You do not need a World Bank Microdata account.</strong>
-      Registering is free and worth doing eventually for your own research,
-      but nothing in the five sessions requires it.
+      Sessions 4 to 6 also import <code>datamat</code>, which is not pulled in
+      as a dependency, so install it alongside:
+      <code>pip install LSMS_Library datamat jupyterlab</code>.
+    </p>
+    <p>
+      <strong>If something does not work, please say so.</strong> Open an
+      issue at
+      <a href="https://github.com/ligon/hhsurveys/issues">ligon/hhsurveys</a>
+      for anything about the workshop materials, or at
+      <a href="https://github.com/ligon/LSMS_Library/issues">ligon/LSMS_Library</a>
+      for the library itself &mdash; a bad extract, a country that will not
+      load, a variable that is not what it claims. Either is more useful than
+      working around it quietly: the library is a work in progress and these
+      reports are how it improves.
+    </p>
+    <p>
+      A <strong>World Bank Microdata account</strong> was not needed during the
+      workshop and is still not required, but it is free and worth having for
+      your own research; the installation page explains where the API key goes.
     </p>
   </section>
 
@@ -233,12 +319,39 @@
       </li>
       <li>
         Deaton and Zaidi, <em>Guidelines for Constructing Consumption Aggregates
-        for Welfare Analysis</em> &mdash; the reference for session 2.
+        for Welfare Analysis</em> (World Bank LSMS Working Paper 135, 2002)
+        &mdash; the reference for sessions 2 and 3.
+      </li>
+      <li>
+        Beegle, De&nbsp;Weerdt, Friedman and Gibson (2012), &ldquo;Methods of
+        household consumption measurement through surveys: experimental
+        results from Tanzania,&rdquo; <em>Journal of Development Economics</em>
+        &mdash; how much of measured poverty is the questionnaire. Session 3.
+      </li>
+      <li>
+        Deaton and Muellbauer (1980), &ldquo;An Almost Ideal Demand
+        System,&rdquo; <em>American Economic Review</em> 70:312&ndash;326, and
+        Lewbel (1991), &ldquo;The rank of demand systems,&rdquo;
+        <em>Econometrica</em> 59:711&ndash;730. Session 4.
+      </li>
+      <li>
+        Ligon, &ldquo;Estimating Household Welfare from Disaggregate
+        Expenditures&rdquo; (CUDARE working paper, 2020) &mdash; the
+        constant-Frisch-elasticity system estimated in session 4, and open
+        access at
+        <a href="https://escholarship.org/uc/item/3ts0g5tn">eScholarship</a>.
       </li>
       <li>
         Deaton (1985), &ldquo;Panel data from time series of cross-sections,&rdquo;
         <em>Journal of Econometrics</em> &mdash; the origin of the pseudo-panel
-        methods in session 4.
+        methods in session 5; with Mundlak (1961) on management bias and
+        Abadie, Athey, Imbens and Wooldridge (2023) on when to cluster.
+      </li>
+      <li>
+        Townsend (1994), &ldquo;Risk and insurance in village India,&rdquo;
+        <em>Econometrica</em>, and Ligon (2026), &ldquo;Risk sharing tests and
+        covariate shocks: drought, floods, and pests in Uganda,&rdquo;
+        <em>American Economic Review</em>, forthcoming. Session 6.
       </li>
     </ul>
   </section>
@@ -248,21 +361,28 @@
     <p>
       The hands-on work uses <a href="https://github.com/ligon/LSMS_Library">LSMS_Library</a>,
       an open-source Python package giving a uniform interface to the household
-      surveys of roughly forty countries. We use Ghana's GLSS as the running
-      local example and Uganda's National Panel Survey for the panel material.
+      surveys of roughly forty countries, together with
+      <a href="https://github.com/ligon/CFEDemands">CFEDemands</a> for the demand
+      system in sessions 4 to 6 and <a href="https://github.com/ligon/DataMat">DataMat</a>
+      for labelled linear algebra. All three are under active development, and
+      the workshop was taught against <code>LSMS_Library</code>&nbsp;0.14.0 and
+      <code>CFEDemands</code>&nbsp;0.10.0.
     </p>
     <p>
-      World Bank microdata cannot be freely redistributed, so the sessions work
-      from harmonised extracts prepared in advance and staged on the hub. This
-      repository contains code and text only &mdash; no survey data.
+      World Bank microdata cannot be freely redistributed, so the sessions
+      worked from harmonised extracts prepared in advance. The
+      <a href="https://github.com/ligon/hhsurveys">materials repository</a>
+      contains code and text only &mdash; no survey data.
     </p>
   </section>
 
   <footer>
     Ethan Ligon &middot; University of California, Berkeley &middot;
-    visiting the Department of Economics, University of Ghana.
+    visiting the Department of Economics, University of Ghana,
+    September 2026.
     <br>
     Materials: <a href="https://github.com/ligon/hhsurveys">github.com/ligon/hhsurveys</a>
+    &middot; CC BY-NC-SA 4.0
   </footer>
 </div>
 <script>

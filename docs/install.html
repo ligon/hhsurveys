@@ -16,7 +16,7 @@
   } catch (e) { /* private window, or storage blocked: fall back to system */ }
 </script>
 <meta name="description" content="How to install the software for the Analysis of Household Surveys workshop, University of Ghana. Optional preparation; the workshop runs on a shared server either way.">
-<title>Before Session One</title>
+<title>Install on your own computer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -458,12 +458,12 @@
         <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
       </div>
     </div>
-    <h1>Before Session One</h1>
+    <h1>Install on your own computer</h1>
     <hr class="rule-thick">
     <p class="standfirst">
-      How to put Python and the survey library on your own laptop. This is
-      optional preparation, not a requirement — but if it works, you will
-      leave the workshop with a setup you can keep using.
+      How to put Python and the survey library on your own laptop, assuming
+      no prior Python. This is what you need in order to keep using the
+      workshop materials once the shared server is gone.
     </p>
   </header>
 
@@ -471,11 +471,13 @@
     <div class="note relief">
       <span class="note-label">Read this first</span>
       <p>
-        <strong>You do not need to finish this to attend.</strong> The five
-        sessions run on a shared server that you reach through a web browser,
-        so everything we do in class will work even if nothing below succeeds.
-        Try it anyway, and tell us how far you got — that is genuinely useful
-        to us, and a failure report costs you nothing.
+        <strong>The workshop ran on a shared server, which closes at the end
+        of September 2026.</strong> The six sessions are ordinary Jupyter
+        notebooks and run anywhere the software below is installed. If you get
+        stuck, tell us how far you got — open an issue at
+        <a href="https://github.com/ligon/hhsurveys/issues">ligon/hhsurveys</a>
+        or <a href="https://github.com/ligon/LSMS_Library/issues">ligon/LSMS_Library</a>,
+        or write. A failure report costs you nothing and is genuinely useful.
       </p>
     </div>
 
@@ -616,7 +618,7 @@ conda activate surveys</pre></div>
             With <code class="inline">(surveys)</code> showing at the start of
             your line, paste:
           </p>
-          <div class="code"><pre>pip install LSMS_Library jupyterlab</pre></div>
+          <div class="code"><pre>pip install LSMS_Library datamat jupyterlab</pre></div>
           <p class="meta">
             This is the big one — about 1.1&nbsp;GB and roughly 180 packages.
             Expect anywhere from a few minutes to the better part of an hour,
@@ -921,9 +923,10 @@ print("saved to", dst)</pre></div>
       </div>
 
       <p class="meta" style="margin-top:1rem">
-        None of the five sessions depends on any of this, and the workshop
-        server works without it &mdash; so if registration is slow, it is not
-        something to worry about before Tuesday.
+        None of the six sessions depends on any of this &mdash; so if
+        registration is slow, it is not something to hold you up. It is worth
+        having for your own research, and for countries the shared cache does
+        not carry.
       </p>
     </div>
   </section>
@@ -1088,8 +1091,8 @@ if __name__ == &quot;__main__&quot;:
   </section>
 
   <div class="footer">
-    <span>Analysis of Household Surveys — a five-session workshop, Department of Economics, University of Ghana, hosted by the International Growth Centre.</span>
-    <span>Instructions verified against LSMS_Library 0.9.1 with pandas 2.3 on Python 3.11 and 3.12.</span>
+    <span>Analysis of Household Surveys — a six-session workshop, Department of Economics, University of Ghana, hosted by the International Growth Centre and STEG.</span>
+    <span>Instructions verified against LSMS_Library 0.9.1 with pandas 2.3 on Python 3.11 and 3.12. The workshop itself was taught on LSMS_Library 0.14.0 and CFEDemands 0.10.0.</span>
   </div>
 </div>
 
