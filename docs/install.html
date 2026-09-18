@@ -504,7 +504,57 @@
   </section>
 
   <section>
-    <h2>The four steps</h2>
+    <h2>The one-step install</h2>
+    <p>
+      This script does everything on the rest of this page: finds or installs
+      Miniforge, creates the <code class="inline">surveys</code> environment,
+      installs the library, asks for your World Bank key and stores it in the
+      right place, then reads real survey data to prove it worked. It is safe
+      to run more than once &mdash; anything already done is skipped &mdash;
+      and it does not touch your shell startup files.
+    </p>
+
+    <div data-os="mac linux">
+      <p>Open <strong>Terminal</strong> and paste these two lines:</p>
+      <div class="code"><pre>curl -fsSL https://hhsurveys-workshop.ligonresearch.org/install_surveys.sh -o install_surveys.sh
+bash install_surveys.sh</pre></div>
+    </div>
+
+    <div data-os="win">
+      <p>
+        Open <strong>PowerShell</strong> from the Start menu and paste these
+        three lines:
+      </p>
+      <div class="code"><pre>cd $HOME\Downloads
+Invoke-WebRequest https://hhsurveys-workshop.ligonresearch.org/install_surveys.ps1 -OutFile install_surveys.ps1
+powershell -ExecutionPolicy Bypass -File .\install_surveys.ps1</pre></div>
+      <p class="meta">
+        Windows blocks downloaded scripts by default, which is what
+        <code class="inline">-ExecutionPolicy Bypass</code> is for. It applies
+        to that one run and changes nothing on your machine.
+      </p>
+    </div>
+
+    <p class="meta">
+      Read it first if you like &mdash; it is plain text and commented
+      throughout:
+      <a href="install_surveys.sh">install_surveys.sh</a> &middot;
+      <a href="install_surveys.ps1">install_surveys.ps1</a>.
+    </p>
+
+    <div class="note warn" style="margin-top:1rem">
+      <span class="note-label">If the script fails, the steps below still work</span>
+      <p>
+        The manual route is the same thing done by hand, and it is what to
+        fall back on &mdash; particularly on Windows, where far fewer people
+        have run this. Either way, please tell us where it stopped:
+        <a href="https://github.com/ligon/hhsurveys/issues">open an issue</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Or, the four steps by hand</h2>
 
     <ol class="steps">
 
@@ -562,26 +612,16 @@ bash Miniforge3-Linux-$(uname -m).sh -b
 
       <!-- STEP 2 -->
       <li class="step">
-        <h3 data-os="win">Install GnuPG</h3>
-        <h3 data-os="mac linux">Create the workshop environment</h3>
+        <h3>Create the workshop environment</h3>
         <div class="step-body">
 
           <div data-os="win">
             <p>
-              The library uses a tool called GnuPG to unlock its data
-              downloads. On Windows it does not come with Miniforge, so it
-              needs its own installer. Download <strong>Gpg4win</strong> and
-              run it, accepting the defaults:
-            </p>
-            <p><a href="https://www.gpg4win.org/download.html">gpg4win.org/download.html</a></p>
-            <p class="meta">
-              You can decline the donation prompt. You do not need to create
-              any keys, and you will never open this program — the library
-              uses it in the background.
-            </p>
-            <p>
-              Now open the <strong>Miniforge Prompt</strong> from the Start
-              menu and paste these two lines, one at a time:
+              This creates a separate workspace called
+              <code class="inline">surveys</code>, so nothing here can disturb
+              other software on your computer. Open the
+              <strong>Miniforge Prompt</strong> from the Start menu and paste
+              these two lines, one at a time:
             </p>
             <div class="code"><pre>conda create -y -n surveys python=3.12 git
 conda activate surveys</pre></div>
@@ -599,7 +639,7 @@ conda activate surveys</pre></div>
               other software on your computer. Paste these two lines, one at a
               time:
             </p>
-            <div class="code"><pre>conda create -y -n surveys python=3.12 git gnupg
+            <div class="code"><pre>conda create -y -n surveys python=3.12 git
 conda activate surveys</pre></div>
             <p class="meta">
               The first line downloads a few hundred megabytes and takes a
@@ -674,9 +714,8 @@ print(roster.shape)</pre></div>
                 <ul class="plain" style="margin-top:0.45rem">
                   <li>
                     <code class="inline">NoCredentialsError: Unable to locate
-                    credentials</code> &mdash; GnuPG is missing. This is the most
-                    common one, especially on Windows. See below; it is a
-                    five-minute fix.
+                    credentials</code> &mdash; no World Bank API key. See
+                    below; it is a five-minute fix, and free.
                   </li>
                   <li>
                     <code class="inline">Bad git executable</code> &mdash; git is
@@ -692,9 +731,9 @@ print(roster.shape)</pre></div>
               </li>
             </ul>
             <p style="margin-top:0.7rem">
-              On the workshop server these lines return almost instantly,
-              because the data and the tools are already in place there. Working
-              on the server is unaffected by any of this.
+              On the workshop server these lines returned almost instantly,
+              because the data was already staged there. On your own machine
+              the first run downloads it, so give it time.
             </p>
           </div>
 
@@ -765,63 +804,65 @@ print(roster.shape)</pre></div>
           so it is not a fair comparison. On your own machine the last line is
           the one that does real work, and it can fail for two quite different
           reasons: it may simply still be downloading, or it may have stopped
-          with <code class="inline">NoCredentialsError</code>, which means
-          GnuPG is missing rather than anything to do with your account.
-          Check whether the cell still shows <code class="inline">[*]</code>,
-          and read the last line of any red traceback.
+          with <code class="inline">NoCredentialsError</code>, which almost
+          always means no World Bank API key is configured. Check whether the
+          cell still shows <code class="inline">[*]</code>, and read the last
+          line of any red traceback.
         </p>
       </div>
 
       <div class="fault">
-        <h3>GnuPG is missing</h3>
+        <h3>No World Bank API key</h3>
         <div class="fault-msg">botocore.exceptions.NoCredentialsError: Unable to locate credentials</div>
         <p>
-          This message is misleading: it almost always means
-          <code class="inline">gpg</code> is not installed, not that anything
-          is wrong with your account. <span data-os="win">On Windows, install
-          Gpg4win from step 2 and then close and reopen the Miniforge
-          Prompt.</span><span data-os="mac linux">Run
-          <code class="inline">conda install -y -c conda-forge gnupg</code>
-          inside the <code class="inline">surveys</code> environment.</span>
+          The message names the wrong thing. It nearly always means no
+          World Bank Microdata API key is configured, so the library will
+          not unlock the data it ships with. Get a key (see below), and
+          either re-run the installer script or save it by hand.
         </p>
         <p>
-          Installing GnuPG is the fix for this particular message. A World
-          Bank Microdata key &mdash; which you should get in any case, see below
-          &mdash; will also let the library reach the data, though by a slower
-          route: it downloads from the World Bank directly rather than from
-          the fast shared cache. With both GnuPG and a key you get the fast
-          route <em>and</em> the full library.
+          A likely second cause, if you are sure you have a key: it was
+          written to the wrong place. The config file lives where
+          <code class="inline">lsms_library.config._config_file()</code> says
+          it does, and that differs by platform. Run those two lines in a
+          notebook and check the file is actually there.
         </p>
-        <p>
-          <strong>Simplest of all, if you are stuck:</strong> log in to the
-          workshop server and open the folder
-          <code class="inline">for-your-laptop</code> in your home directory.
-          It contains one small file and a README explaining what to do with
-          it &mdash; copying that file onto your own machine restores the fast
-          route without GnuPG.
-        </p>
-        <p class="meta">
-          If none of this works, use the workshop server &mdash; it is what the
-          sessions run on, and nothing there depends on your laptop.
-        </p>
+        <div class="note" style="margin-top:0.9rem">
+          <span class="note-label">This used to be a GnuPG problem. It is not any more.</span>
+          <p>
+            Older versions needed the <code class="inline">gpg</code> binary,
+            which macOS and Windows do not ship &mdash; hence the Gpg4win step
+            that used to be on this page. Since LSMS_Library 0.10 the
+            decryption is pure Python, and
+            <code class="inline">gpg</code> is only a fallback for old wheels.
+            If you installed Gpg4win for this workshop you can leave it or
+            remove it; nothing here needs it.
+          </p>
+        </div>
       </div>
     </div>
 
     <div class="note relief">
-      <span class="note-label">Please register for a World Bank Microdata key</span>
+      <span class="note-label">You need a World Bank Microdata key</span>
       <p>
-        It is free, takes a few minutes, and we would encourage everyone to do
-        it: <a href="https://microdata.worldbank.org/">microdata.worldbank.org</a>.
+        It is free and takes a few minutes:
+        <a href="https://microdata.worldbank.org/">microdata.worldbank.org</a>.
         Register, then accept the terms of use for the LSMS collections.
       </p>
       <p>
-        Two reasons it is worth your while. It opens up the whole of the
-        library rather than the slice staged for this workshop &mdash; roughly
-        forty countries of survey data, which is what makes the tool useful for
-        your own research afterwards. And it puts your access to the data on
-        its proper footing: the surveys belong to national statistical offices
-        and the World Bank, whose terms ask each user to accept them
-        individually. Holding your own key is how you do that.
+        <strong>The key is the access gate.</strong> Holding a valid one is
+        what lets the library download from the World Bank directly
+        <em>and</em> what unlocks the fast shared cache &mdash; it is not a
+        slower alternative to the cache, it is the thing that opens it. Without
+        a key, data calls fail. It also opens the whole library rather than the
+        slice staged for this workshop: roughly forty countries, which is what
+        makes the tool useful for your own research.
+      </p>
+      <p>
+        And it puts your access on its proper footing. The surveys belong to
+        national statistical offices and the World Bank, whose terms ask each
+        user to accept them individually. Holding your own key is how you do
+        that.
       </p>
       <h3 style="margin-top:1rem">Getting the key, step by step</h3>
       <p class="meta">
@@ -887,20 +928,26 @@ print(roster.shape)</pre></div>
         To save the key on your own machine, paste this into a Jupyter cell,
         putting your key between the quotes:
       </p>
-      <div class="code"><pre>from pathlib import Path
-import json
+      <div class="code"><pre>import yaml
+from lsms_library import config
 
 key = "PASTE-YOUR-KEY-HERE"
 
-dst = Path.home() / ".config" / "lsms_library" / "config.yml"
+dst = config._config_file()
 dst.parent.mkdir(parents=True, exist_ok=True)
-dst.write_text("microdata_api_key: " + json.dumps(key) + "\n")
+data = yaml.safe_load(dst.read_text()) if dst.exists() else {}
+data = {**(data or {}), "microdata_api_key": key}
+dst.write_text(yaml.safe_dump(data, sort_keys=True))
 print("saved to", dst)</pre></div>
       <p class="meta">
-        That makes the folder for you, so you do not have to go looking for a
-        hidden directory. Restart the kernel afterwards
-        (<strong>Kernel &rarr; Restart Kernel</strong>) so the library picks it
-        up.
+        Ask the library where its config file goes rather than assuming.
+        The location differs by platform &mdash;
+        <code class="inline">~/.config</code> on Linux,
+        <code class="inline">~/Library/Application&nbsp;Support</code> on macOS,
+        and under <code class="inline">%LOCALAPPDATA%</code> on Windows &mdash;
+        so a hardcoded path works on one of the three. Restart the kernel
+        afterwards (<strong>Kernel &rarr; Restart Kernel</strong>) so the
+        library picks it up. The installer script does all of this for you.
       </p>
 
       <div class="note warn" style="margin-top:1rem">
@@ -923,10 +970,9 @@ print("saved to", dst)</pre></div>
       </div>
 
       <p class="meta" style="margin-top:1rem">
-        None of the six sessions depends on any of this &mdash; so if
-        registration is slow, it is not something to hold you up. It is worth
-        having for your own research, and for countries the shared cache does
-        not carry.
+        On the workshop server none of this mattered, because the data was
+        already there. On your own machine it is the thing that makes the
+        library work at all.
       </p>
     </div>
   </section>
@@ -1003,12 +1049,35 @@ def main():
     )
 
     # 3. gpg on PATH -----------------------------------------------------
+    # Informational only.  LSMS_Library decrypts its own S3 read credentials
+    # in pure Python (Fernet, via `cryptography&#x27;, a hard dependency) as of
+    # GH #741; the bundled s3_reader_creds.enc ships in the wheel.  The gpg
+    # binary -- which macOS and Windows do not ship -- is now only a fallback
+    # for wheels built before that file existed.  Reporting its absence as a
+    # FAIL sent people off to install Gpg4win for no reason.
     gpg = shutil.which(&quot;gpg&quot;) or shutil.which(&quot;gpg2&quot;)
     record(
-        &quot;gpg is installed&quot;,
-        gpg is not None,
-        gpg or &quot;not found -- data downloads will fail with a credentials error&quot;,
+        &quot;gpg is installed (optional)&quot;,
+        True,
+        gpg or &quot;not found -- fine; decryption is pure Python since LSMS_Library 0.10&quot;,
     )
+
+    # 3b. the World Bank Microdata API key --------------------------------
+    # This is the real access gate: a valid key proves acceptance of the
+    # World Bank&#x27;s terms of use, and is what unlocks both direct downloads
+    # and the shared S3 read cache.
+    try:
+        from lsms_library import config as _cfg
+
+        _key = _cfg.microdata_api_key()
+        record(
+            &quot;World Bank Microdata API key&quot;,
+            bool(_key),
+            (f&quot;configured ({_key[:6]}...)&quot; if _key
+             else &quot;not set -- data access will fail; see the install page&quot;),
+        )
+    except Exception as exc:  # noqa: BLE001 -- pre-import, report anything
+        record(&quot;World Bank Microdata API key&quot;, False, f&quot;could not check: {exc}&quot;)
 
     # 4. the library imports ---------------------------------------------
     lib_ok = False
@@ -1022,6 +1091,39 @@ def main():
         )
     except Exception as exc:  # noqa: BLE001 -- report anything to the student
         record(&quot;lsms_library imports&quot;, False, f&quot;{type(exc).__name__}: {exc}&quot;)
+
+    # 4b. pandas matches what THIS lsms_library asks for -------------------
+    # Do not hard-code a bound. 0.9.x needs pandas &lt; 3; 0.10.1 and later need
+    # pandas &gt; 3. Read the requirement from the installed package&#x27;s own
+    # metadata so this check stays right across that change instead of
+    # failing a correct installation.
+    try:
+        import pandas as _pd
+        from importlib.metadata import requires as _requires
+        from packaging.requirements import Requirement as _Req
+        from packaging.version import Version as _V
+
+        _spec = None
+        for _r in _requires(&quot;LSMS_Library&quot;) or []:
+            _req = _Req(_r)
+            if _req.name.lower() == &quot;pandas&quot; and not _req.marker:
+                _spec = _req.specifier
+                break
+
+        if _spec is None:
+            record(&quot;pandas version suits the library&quot;, True,
+                   f&quot;pandas {_pd.__version__}; library states no bound&quot;)
+        else:
+            _ok = _V(_pd.__version__) in _spec
+            record(
+                &quot;pandas version suits the library&quot;,
+                _ok,
+                f&quot;pandas {_pd.__version__}, library wants pandas{_spec}&quot;
+                + (&quot;&quot; if _ok else &#x27;; run: pip install --upgrade LSMS_Library&#x27;),
+            )
+    except Exception as exc:  # noqa: BLE001
+        record(&quot;pandas version suits the library&quot;, False,
+               f&quot;{type(exc).__name__}: {exc}&quot;)
 
     # 5. Jupyter ----------------------------------------------------------
     jupyter_exe = shutil.which(&quot;jupyter&quot;)
@@ -1085,8 +1187,7 @@ def main():
 
 
 if __name__ == &quot;__main__&quot;:
-    main()
-</pre></div>
+    main()</pre></div>
     </details>
   </section>
 
